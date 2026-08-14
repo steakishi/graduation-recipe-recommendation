@@ -1,0 +1,43 @@
+# Generic safeguards. A pattern does not imply that matching files exist.
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+.*.vars
+.*.vars.*
+!.*.vars.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local data and generated output
+/data/
+/datasets/
+/artifacts/
+/outputs/
+/results/
+/logs/
+/cache/
+/.cache/
+/tmp/
+/temp/
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary, editor, and operating-system files
+*.tmp
+*.bak
+*.swp
+*.swo
+~$*
+/.vscode/
+/.idea/
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
