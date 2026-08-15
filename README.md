@@ -16,21 +16,28 @@
 
 現在の方法では、次の処理を想定しています。
 
-1. 採用したチラシPDF内の埋め込み画像を直接抽出し、商品、価格、販売期間、販売条件などの関係を保った商品販売情報を構造化する。
+1. 採用したチラシPDF内の埋め込み画像を直接抽出し、商品、販売枠、区画、価格、販売期間、販売条件、注意書きなどの関係を保った商品販売情報を構造化する。
 2. チラシ商品名と楽天レシピAPI由来の材料名を、共通材料名へ正規化する。
 3. チラシ商品とレシピ材料を対応付ける。
-4. ユーザの嗜好・制約を反映し、説明可能な候補生成・順位付けを行う。
-5. 同一のチラシおよび同一の固定レシピ集合を用いる手動探索UIと提案システムを比較する。
+4. 対応付け結果に基づいて、チラシ掲載商品を利用できるレシピ候補を生成する。
+5. ユーザの嗜好・制約を反映し、説明可能な候補生成・順位付けを行う。
+6. 同一のチラシおよび同一の固定レシピ集合を用いる手動探索UIと提案システムを比較する。
 
 ### 評価の観点
 
 現時点では、次の三つの観点から評価する予定です。
 
-- 対応付けと候補生成の成立性：チラシ商品とレシピ材料をどの程度正確に対応付け、どの範囲の商品について候補を生成できるか。
+- 商品販売情報の構造化、対応付けおよび候補生成の成立性：チラシから各項目と項目間の関係をどの程度正確に再現し、商品名・材料名を正規化して対応付け、どの範囲の商品について妥当なレシピ候補を生成できるか。
 - 客観的な探索効率：手動探索UIと比較して、レシピ決定までの時間や検索・閲覧等の操作量を減らせるか。
 - 主観的な探索支援効果：主観的作業負荷、探しやすさ、条件適合感、チラシ商品との関係の理解、選択への納得感を改善できるか。
 
-研究題目、Research Question、評価指標および研究範囲は現時点の暫定版であり、原資料の再確認、処理フローの具体化、予備実験、指導教員との確認により更新する可能性があります。
+第一の観点は、次の三段階を一つの技術的なResearch Questionとして扱います。
+
+1. 商品販売情報の抽出・関係構造化
+2. チラシ商品名とレシピ材料名の正規化・対応付け
+3. 妥当なレシピ候補の生成
+
+研究題目、Research Question、評価指標および研究範囲は現時点の暫定版であり、原資料の再確認、処理フローの具体化、予備評価・予備実験、指導教員との確認により更新する可能性があります。
 
 ### このリポジトリの役割
 
@@ -51,7 +58,7 @@
 
 ### 現在の状態
 
-本研究は進行中です。研究管理基盤と公開・非公開リポジトリの初期構成を整備し、現在は研究定義、ユーザ嗜好・制約、対応付け評価、実験参加者条件、背景および先行研究との差分を具体化しています。
+本研究は進行中です。研究管理基盤と公開・非公開リポジトリの初期構成を整備し、現在はRQ1のうち、商品販売情報の抽出・関係構造化を評価するための、人間が原画像に照らして確認・確定する参照データの作成方法を具体化しています。その後、既に収集している文献を起点として先行研究を整理する予定です。
 
 未確認の実装内容や実験結果は、本リポジトリ上で確定事項として扱いません。
 
@@ -75,21 +82,28 @@ The goal is not to have the system determine a single correct recipe. Instead, i
 
 The current method is expected to include the following steps:
 
-1. Directly extract embedded images from selected flyer PDFs and structure sales information while preserving relationships among products, prices, sales periods, and sales conditions.
+1. Directly extract embedded images from selected flyer PDFs and structure sales information while preserving relationships among products, sales frames, sections, prices, sales periods, conditions, and notes.
 2. Normalize flyer product names and Rakuten Recipe API ingredient names to shared ingredient names.
 3. Match flyer products with recipe ingredients.
-4. Generate and rank explainable candidates based on explicit user preferences and constraints.
-5. Compare the proposed system with a manual exploration interface using the same flyers and the same fixed recipe dataset.
+4. Generate recipe candidates that can use the matched flyer-listed products.
+5. Generate and rank explainable candidates based on explicit user preferences and constraints.
+6. Compare the proposed system with a manual exploration interface using the same flyers and the same fixed recipe dataset.
 
 ### Evaluation perspectives
 
 The current evaluation plan has three main perspectives:
 
-- Feasibility of matching and candidate generation: how accurately flyer products and recipe ingredients can be matched, and for how many flyer products recipe candidates can be generated.
+- Feasibility of structuring flyer sales information, matching, and candidate generation: how accurately the system can reproduce fields and relationships from flyers, normalize and match product and ingredient names, and generate valid recipe candidates for flyer-listed products.
 - Objective exploration efficiency: whether the proposed system reduces decision time and search or browsing operations compared with the manual exploration interface.
 - Subjective exploration-support effects: whether it improves perceived workload, ease of exploration, perceived fit with user conditions, understanding of flyer-product relationships, and satisfaction with the final choice.
 
-The research title, research questions, evaluation measures, and scope are provisional and may be updated after source verification, method refinement, pilot testing, and consultation with the academic supervisor.
+The first perspective is treated as one technical research question with three internal stages:
+
+1. Extraction and relational structuring of flyer sales information
+2. Normalization and matching of flyer product names and recipe ingredient names
+3. Generation of valid recipe candidates
+
+The research title, research questions, evaluation measures, and scope are provisional and may be updated after source verification, method refinement, preliminary technical evaluation, pilot testing, and consultation with the academic supervisor.
 
 ### Purpose of this repository
 
@@ -110,7 +124,7 @@ These materials are not stored in this repository. They are managed separately a
 
 ### Current status
 
-This research is in progress. The initial research-management structure and the public and private repositories have been prepared. The current work focuses on refining the research definition, user preferences and constraints, matching evaluation, participant criteria, background evidence, and distinctions from prior work.
+This research is in progress. The initial research-management structure and the public and private repositories have been prepared. Current work focuses on designing human-verified reference data for evaluating the first stage of RQ1: extraction and relational structuring of flyer sales information. The next planned step is to organize prior work starting from the literature already collected.
 
 Unverified implementation details and experimental results are not presented in this repository as established facts.
 
