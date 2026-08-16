@@ -58,7 +58,7 @@
 
 ### 現在の状態
 
-本研究は進行中です。研究管理基盤と公開・非公開リポジトリの初期構成を整備し、現在はRQ1のうち、商品販売情報の抽出・関係構造化を評価するための、人間が原画像に照らして確認・確定する参照データの作成方法を具体化しています。その後、既に収集している文献を起点として先行研究を整理する予定です。
+本研究は進行中です。研究管理基盤と公開・非公開リポジトリの初期構成を整備し、現在はRQ1第1段階で使用する既存のチラシ画像から商品販売情報JSONを生成する専用プロンプトとJSONルールを、参照データ作成および技術評価の設計へ統合する準備を進めています。既存設計の確認と第1段階の方法整理を終えた後、既に収集している文献を起点として先行研究を整理する予定です。
 
 未確認の実装内容や実験結果は、本リポジトリ上で確定事項として扱いません。
 
@@ -124,7 +124,7 @@ These materials are not stored in this repository. They are managed separately a
 
 ### Current status
 
-This research is in progress. The initial research-management structure and the public and private repositories have been prepared. Current work focuses on designing human-verified reference data for evaluating the first stage of RQ1: extraction and relational structuring of flyer sales information. The next planned step is to organize prior work starting from the literature already collected.
+This research is in progress. The initial research-management structure and the public and private repositories have been prepared. Current work is preparing to integrate an existing dedicated flyer-image-to-sales-information-JSON prompt and its JSON rules into the Stage 1 reference-data and technical-evaluation design for RQ1. After reviewing the existing design and stabilizing the Stage 1 method, the next planned step is to organize prior work starting from the literature already collected.
 
 Unverified implementation details and experimental results are not presented in this repository as established facts.
 
