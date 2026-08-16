@@ -23,21 +23,37 @@
 5. ユーザの嗜好・制約を反映し、説明可能な候補生成・順位付けを行う。
 6. 同一のチラシおよび同一の固定レシピ集合を用いる手動探索UIと提案システムを比較する。
 
-### 評価の観点
+### Research Question（RQ）の暫定構成
 
-現時点では、次の三つの観点から評価する予定です。
+本研究では、現時点で次の3つのRQを設定しています。
 
-- 商品販売情報の構造化、対応付けおよび候補生成の成立性：チラシから各項目と項目間の関係をどの程度正確に再現し、商品名・材料名を正規化して対応付け、どの範囲の商品について妥当なレシピ候補を生成できるか。
-- 客観的な探索効率：手動探索UIと比較して、レシピ決定までの時間や検索・閲覧等の操作量を減らせるか。
-- 主観的な探索支援効果：主観的作業負荷、探しやすさ、条件適合感、チラシ商品との関係の理解、選択への納得感を改善できるか。
+#### RQ1　商品販売情報の構造化、対応付けおよび候補生成の成立性
 
-第一の観点は、次の三段階を一つの技術的なResearch Questionとして扱います。
+複数企業・複数取得元のチラシPDF・PDF抽出画像から、商品、販売枠、区画、価格、販売期間、販売条件等の関係を保持した商品販売情報を構造化し、楽天レシピAPI由来の材料表記と共通材料名を介して対応付ける一連の方法は、人間が原画像に照らして確認・確定した参照データと比較して、各情報およびその関係をどの程度正確に再現し、どの程度のチラシ商品について妥当なレシピ候補を生成できるか。
+
+RQ1は、次の三段階を一つの技術的なRQとして扱います。
 
 1. 商品販売情報の抽出・関係構造化
 2. チラシ商品名とレシピ材料名の正規化・対応付け
 3. 妥当なレシピ候補の生成
 
-研究題目、Research Question、評価指標および研究範囲は現時点の暫定版であり、原資料の再確認、処理フローの具体化、予備評価・予備実験、指導教員との確認により更新する可能性があります。
+RQ1は、個別の文字認識精度だけを再測定するものではありません。商品名、価格、販売期間等を個別に正しく読めても、それらを誤った商品へ関連付けた場合は、後段で利用できる商品販売情報にはなりません。そのため、項目値だけでなく、商品、販売枠、区画、価格、期間、条件等の関係を評価し、正規化・対応付けと候補生成まで一連で成立するかを確認します。
+
+#### RQ2　客観的な探索効率
+
+提案システムは、同一のチラシおよび同一のレシピ集合を用いる手動探索UIと比較して、レシピ決定までの時間および探索操作量を減らせるか。
+
+#### RQ3　主観的な探索支援効果
+
+提案システムは、手動探索UIと比較して、ユーザの主観的作業負荷を低減し、レシピの探しやすさ、提示候補の条件適合感、チラシ商品との関係の理解、および選択への納得感を高められるか。
+
+### 各RQに対応する主な評価候補
+
+- RQ1：項目値と項目間関係の正確性、欠落・過剰抽出、正規化・対応付けの妥当性、候補生成率、候補の妥当性など
+- RQ2：レシピ決定までの時間、検索実行回数、詳細閲覧回数、フィルタ変更回数、戻る操作回数、閲覧候補数など
+- RQ3：主観的作業負荷、探しやすさ、条件適合感、チラシ商品との関係の理解、推薦理由への納得、最終選択への納得感など
+
+研究題目、RQ、評価指標および研究範囲は現時点の暫定版であり、原資料の再確認、処理フローの具体化、予備評価・予備実験、指導教員との確認により更新する可能性があります。
 
 ### このリポジトリの役割
 
@@ -89,19 +105,35 @@ The current method is expected to include the following steps:
 5. Generate and rank explainable candidates based on explicit user preferences and constraints.
 6. Compare the proposed system with a manual exploration interface using the same flyers and the same fixed recipe dataset.
 
-### Evaluation perspectives
+### Provisional research questions
 
-The current evaluation plan has three main perspectives:
+The study currently defines the following three research questions.
 
-- Feasibility of structuring flyer sales information, matching, and candidate generation: how accurately the system can reproduce fields and relationships from flyers, normalize and match product and ingredient names, and generate valid recipe candidates for flyer-listed products.
-- Objective exploration efficiency: whether the proposed system reduces decision time and search or browsing operations compared with the manual exploration interface.
-- Subjective exploration-support effects: whether it improves perceived workload, ease of exploration, perceived fit with user conditions, understanding of flyer-product relationships, and satisfaction with the final choice.
+#### RQ1: Feasibility of structuring flyer sales information, matching, and candidate generation
 
-The first perspective is treated as one technical research question with three internal stages:
+To what extent can an end-to-end method accurately reproduce flyer fields and their relationships, normalize and match flyer product names with Rakuten Recipe API ingredient names through shared ingredient names, and generate valid recipe candidates for flyer-listed products, when compared with reference data verified and finalized by a human against the source images?
+
+RQ1 is treated as one technical research question with three internal stages:
 
 1. Extraction and relational structuring of flyer sales information
 2. Normalization and matching of flyer product names and recipe ingredient names
 3. Generation of valid recipe candidates
+
+RQ1 does not merely repeat character-recognition evaluation. Even if product names, prices, or sales periods are read correctly in isolation, the resulting sales information is not usable if they are linked to the wrong products. RQ1 therefore evaluates relationships among products, sales frames, sections, prices, periods, and conditions, and examines whether the whole pipeline can proceed through normalization, matching, and candidate generation.
+
+#### RQ2: Objective exploration efficiency
+
+Compared with a manual exploration interface using the same flyers and the same recipe dataset, does the proposed system reduce the time and number of operations required to select a recipe?
+
+#### RQ3: Subjective exploration-support effects
+
+Compared with the manual exploration interface, does the proposed system reduce perceived workload and improve ease of exploration, perceived fit with user conditions, understanding of flyer-product relationships, and satisfaction with the final choice?
+
+### Main candidate measures corresponding to each RQ
+
+- RQ1: accuracy of field values and relationships, omissions and over-extraction, validity of normalization and matching, candidate-generation coverage, and candidate validity
+- RQ2: decision time, number of searches, detail views, filter changes, back operations, and viewed candidates
+- RQ3: perceived workload, ease of exploration, perceived fit, understanding of flyer-product relationships, acceptance of explanations, and satisfaction with the final choice
 
 The research title, research questions, evaluation measures, and scope are provisional and may be updated after source verification, method refinement, preliminary technical evaluation, pilot testing, and consultation with the academic supervisor.
 
